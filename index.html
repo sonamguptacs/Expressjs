@@ -1,8 +1,25 @@
 <!DOCTYPE html>
   <head>
     <title>Message</title>
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+    <script>
+        const socket=io('http://localhost:3000/')
+        socket.on('connection');
+
+        socket.on('message',(msg)=>{
+           const h1= document.createElement('h1');
+           h1.innerText=msg;
+           document.body.appendChild(h1)
+        })
+
+        setInterval(()=>{
+            socket.emit("message","Hello There !!")
+        },2000);
+
+    </script>
   </head>
   <body>
     Hello Express!!!!
+   <h1></h1>
   </body>
 </html>
